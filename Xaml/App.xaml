@@ -1,0 +1,60 @@
+﻿<Controls:MetroWindow 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="MainWindow" WindowStartupLocation="CenterScreen" SizeToContent="WidthAndHeight" WindowStyle="None" AllowsTransparency="True" Background="WhiteSmoke" BorderThickness="2" BorderBrush="#CC0050EF" UseNoneWindowStyle="True" Topmost="True" ResizeMode="NoResize">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Cobalt.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Name="Grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="WhiteSmoke">
+            <TextBlock Text="LAPS Password Manager" FontSize="42" FontWeight="Bold" Foreground="Black" Width="Auto" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="5" />
+        </StackPanel>
+        <DockPanel Grid.Row="1" LastChildFill="False">
+            <TextBox Name="ComputerName" Controls:TextBoxHelper.Watermark="ComputerName" Width="525" Height="45" VerticalContentAlignment="Center" Controls:TextBoxHelper.UseFloatingWatermark="True" Controls:TextBoxHelper.ClearTextButton="True" CharacterCasing="Upper" Margin="5" FontSize="16" />
+            <Button Name="Close" DockPanel.Dock="Right" Content="Close" Style="{StaticResource AccentedSquareButtonStyle}" Width="100" Margin="0,5,10,5" FontSize="18" />
+        </DockPanel>
+        <StackPanel Grid.Row="2">
+            <GroupBox Header="Current Password">
+                <StackPanel Orientation="Horizontal">
+                    <TextBox Name="CurrentExpiration" Text="{Binding [4]}" Controls:TextBoxHelper.Watermark="Expiration Date" Width="260" VerticalContentAlignment="Center" Controls:TextBoxHelper.UseFloatingWatermark="True" IsReadOnly="True" FontSize="16" />
+                    <TextBox Name="CurrentPassword" Text="{Binding [5]}" Controls:TextBoxHelper.Watermark="Password" Width="260" VerticalContentAlignment="Center" Controls:TextBoxHelper.UseFloatingWatermark="True" IsReadOnly="True" FontSize="26" Margin="5,0,0,0"/>
+                    <Button Name="GetCurrent" Content="Get" Style="{StaticResource AccentedSquareButtonStyle}" Width="100" Margin="5,0,5,0" Foreground="LawnGreen" IsEnabled="False" FontSize="18" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Header="Set Password Expiration">
+                <DockPanel LastChildFill="False">
+                    <Controls:DateTimePicker Name="NewPasswordExpiration" Width="525" PickerVisibility="All" HandVisibility="All" SelectedDateFormat="Long" SelectedTimeFormat="Long" Height="45" FontSize="16" />
+                    <Button Name="Set" DockPanel.Dock="Right" Content="Set" Style="{StaticResource AccentedSquareButtonStyle}" Width="100" Margin="5,0,5,0" Foreground="LawnGreen" IsEnabled="False" FontSize="18" />
+                </DockPanel>
+            </GroupBox>
+        </StackPanel>
+        <Controls:MetroProgressBar Grid.Row="3" Width="Auto" IsIndeterminate="{Binding [1]}"/>
+        <StatusBar Grid.Row="4">
+            <StatusBarItem>
+                <TextBlock Text="{Binding [2]}" Foreground="{Binding [3]}"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                    <TextBlock Text="SMSAgent" VerticalAlignment="Center" />
+                    <Image Name="Logo" Width="22" Height="24" Margin="6,0,0,0"/>
+                </StackPanel>
+            </StatusBarItem>
+        </StatusBar>
+    </Grid>
+</Controls:MetroWindow>
